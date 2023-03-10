@@ -24,7 +24,6 @@ mqtt_topic = config["mqtt"]["topic"]
 
 print (HOSTs)
 print (HOSTs[0])
-print (PORT)
 
 
 #HOSTs = ["192.168.84.81", "192.168.84.85", "192.168.84.83"] # Antminer IP
@@ -65,6 +64,7 @@ client.connect_async(mqtt_ipaddress) #connect to broker
 client.loop_start()
 num = 0
 for x in HOSTs:
+  print (x)
   num += 1
   try:   
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
