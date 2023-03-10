@@ -68,7 +68,7 @@ for x in HOSTs:
   num += 1
   try:   
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-      s.connect(str(x), PORT)
+      s.connect((x, PORT))
       s.sendall(bytes(jdata,encoding="utf-8"))
       data = ''
       while 1:
