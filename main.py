@@ -71,6 +71,7 @@ for x in HOSTs:
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
       s.connect((x, PORT))
       s.sendall(bytes(jdata,encoding="utf-8"))
+      time.sleep(2)
       data = ''
       while 1:
           chunk = s.recv(4026)
