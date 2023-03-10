@@ -16,7 +16,7 @@ import paho.mqtt.client as mqtt
 config = configparser.ConfigParser()
 config.read("config.ini")  # читаем конфиг
 HOSTs = config["antminer"]["hosts"].split(',')
-PORT = config["antminer"]["ipport"]
+PORT = str(config["antminer"]["ipport"])
 mqtt_ipaddress = config["mqtt"]["ipaddress"]
 mqtt_user = config["mqtt"]["user"]
 mqtt_pass = config["mqtt"]["pass"]
@@ -68,7 +68,7 @@ for x in HOSTs:
   num += 1
   try:   
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-      s.connect((x, 4028))
+      s.connect((x, PORT))
       s.sendall(bytes(jdata,encoding="utf-8"))
       data = ''
       while 1:
@@ -87,7 +87,7 @@ for x in HOSTs:
   except Exception:
 #  os.remove("test2.json")
 #    with open(NAMEs[x] + '.json', 'w') as outfile:
-          client.publish(mqtt_topic + '/miner' + num, '{"STATUS": [{"STATUS": "S", "When": 1672756714, "Code": 70, "Msg": "CGMiner stats", "Description": "cgminer 1.0.0"}], "STATS": [{"BMMiner": "1.0.0", "Miner": "uart_trans.1.3", "CompileTime": "Tue Mar 29 14:31:43 CST 2022", "Type": "Antminer S19j Pro"}, {"STATS": 0, "ID": "BTM_SOC0", "Elapsed": 4815, "Calls": 0, "Wait": 0, "Max": 0, "Min": 99999999, "GHS 5s": 0, "GHS av": 0, "rate_30m": 0, "Mode": 2, "miner_count": 3, "frequency": 222, "fan_num": 4, "fan1": 0, "fan2": 0, "fan3": 0, "fan4": 0, "temp_num": 3, "temp1": 0, "temp2_1": 0, "temp2": 0, "temp2_2": 0, "temp3": 0, "temp2_3": 0, "temp_pcb1": "34-34-38-38", "temp_pcb2": "34-34-38-38", "temp_pcb3": "34-34-38-38", "temp_pcb4": "0-0-0-0", "temp_chip1": "39-39-43-43", "temp_chip2": "39-39-43-43", "temp_chip3": "39-39-43-43", "temp_chip4": "0-0-0-0", "temp_pic1": "24-24-28-28", "temp_pic2": "24-24-28-28", "temp_pic3": "24-24-28-28", "temp_pic4": "0-0-0-0", "total_rateideal": 40000.0, "rate_unit": "GH", "total_freqavg": 222, "total_acn": 378, "total rate": 42861.05, "temp_max": 0, "no_matching_work": 0, "chain_acn1": 126, "chain_acn2": 126, "chain_acn3": 126, "chain_acn4": 0, "chain_acs1": " ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo", "chain_acs2": " ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo", "chain_acs3": " ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo", "chain_acs4": "", "chain_hw1": 0, "chain_hw2": 0, "chain_hw3": 0, "chain_hw4": 0, "chain_rate1": "13787.88", "chain_rate2": "15041.32", "chain_rate3": "13809.87", "chain_rate4": "", "freq1": 222, "freq2": 222, "freq3": 222, "freq4": 0, "miner_version": "uart_trans.1.3", "miner_id": "no miner id now"}], "id": 1}', 1)
+          client.publish(mqtt_topic + '/miner' + str(num), '{"STATUS": [{"STATUS": "S", "When": 1672756714, "Code": 70, "Msg": "CGMiner stats", "Description": "cgminer 1.0.0"}], "STATS": [{"BMMiner": "1.0.0", "Miner": "uart_trans.1.3", "CompileTime": "Tue Mar 29 14:31:43 CST 2022", "Type": "Antminer S19j Pro"}, {"STATS": 0, "ID": "BTM_SOC0", "Elapsed": 4815, "Calls": 0, "Wait": 0, "Max": 0, "Min": 99999999, "GHS 5s": 0, "GHS av": 0, "rate_30m": 0, "Mode": 2, "miner_count": 3, "frequency": 222, "fan_num": 4, "fan1": 0, "fan2": 0, "fan3": 0, "fan4": 0, "temp_num": 3, "temp1": 0, "temp2_1": 0, "temp2": 0, "temp2_2": 0, "temp3": 0, "temp2_3": 0, "temp_pcb1": "34-34-38-38", "temp_pcb2": "34-34-38-38", "temp_pcb3": "34-34-38-38", "temp_pcb4": "0-0-0-0", "temp_chip1": "39-39-43-43", "temp_chip2": "39-39-43-43", "temp_chip3": "39-39-43-43", "temp_chip4": "0-0-0-0", "temp_pic1": "24-24-28-28", "temp_pic2": "24-24-28-28", "temp_pic3": "24-24-28-28", "temp_pic4": "0-0-0-0", "total_rateideal": 40000.0, "rate_unit": "GH", "total_freqavg": 222, "total_acn": 378, "total rate": 42861.05, "temp_max": 0, "no_matching_work": 0, "chain_acn1": 126, "chain_acn2": 126, "chain_acn3": 126, "chain_acn4": 0, "chain_acs1": " ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo", "chain_acs2": " ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo", "chain_acs3": " ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo", "chain_acs4": "", "chain_hw1": 0, "chain_hw2": 0, "chain_hw3": 0, "chain_hw4": 0, "chain_rate1": "13787.88", "chain_rate2": "15041.32", "chain_rate3": "13809.87", "chain_rate4": "", "freq1": 222, "freq2": 222, "freq3": 222, "freq4": 0, "miner_version": "uart_trans.1.3", "miner_id": "no miner id now"}], "id": 1}', 1)
 #    outfile.close()
   finally:
     s.close
