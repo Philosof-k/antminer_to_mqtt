@@ -22,6 +22,9 @@ mqtt_user = config["mqtt"]["user"]
 mqtt_pass = config["mqtt"]["pass"]
 mqtt_topic = config["mqtt"]["topic"]
 
+print (HOSTs)
+print (PORT)
+
 
 #HOSTs = ["192.168.84.81", "192.168.84.85", "192.168.84.83"] # Antminer IP
 #NAMEs = ["miner1", "miner2", "miner3"]
