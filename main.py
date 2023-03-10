@@ -23,6 +23,7 @@ mqtt_pass = config["mqtt"]["pass"]
 mqtt_topic = config["mqtt"]["topic"]
 
 print (HOSTs)
+print (HOSTs[0])
 print (PORT)
 
 
