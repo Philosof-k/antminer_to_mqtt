@@ -15,7 +15,7 @@ import paho.mqtt.client as mqtt
 
 config = configparser.ConfigParser()
 config.read("config.ini")  # читаем конфиг
-HOSTs = config["antminer"]["hosts"].split()
+HOSTs = config["antminer"]["hosts"].split(,)
 PORT = config["antminer"]["ipport"]
 mqtt_ipaddress = config["mqtt"]["ipaddress"]
 mqtt_user = config["mqtt"]["user"]
