@@ -79,7 +79,7 @@ for x in HOSTs:
               break
       datajs = json.loads(data[:-1])
 #      print (json.dumps(datajs))
-      client.publish(mqtt_topic + '/miner' + num, json.dumps(datajs), 1)
+      client.publish(mqtt_topic + '/miner' + str(num), json.dumps(datajs), 1)
 #      with open(NAMEs[x] + '.json', 'w') as outfile:
 #          json.dump(datajs, outfile)
 #      outfile.close()
