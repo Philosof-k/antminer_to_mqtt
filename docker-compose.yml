@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  antminer_to_mqtt:
+    build: .
+    container_name: antminer_to_mqtt
+    volumes:
+      - /docker/antminer_to_mqtt/app:/usr/src/app
+    restart: unless-stopped
