@@ -16,7 +16,7 @@ import paho.mqtt.client as mqtt
 config = configparser.ConfigParser()
 config.read("config.ini")  # читаем конфиг
 HOSTs = config["antminer"]["hosts"].split(',')
-PORT = str(config["antminer"]["ipport"])
+PORT = config["antminer"]["ipport"]
 mqtt_ipaddress = config["mqtt"]["ipaddress"]
 mqtt_user = config["mqtt"]["user"]
 mqtt_pass = config["mqtt"]["pass"]
@@ -69,7 +69,7 @@ for x in HOSTs:
   num += 1
   try:   
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-      s.connect((x, 4028))
+      s.connect((x, PORT))
       s.sendall(bytes(jdata,encoding="utf-8"))
       #time.sleep(2)
       data = ''
